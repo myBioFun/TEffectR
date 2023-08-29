@@ -72,8 +72,8 @@ rm_format <- function(filepath){
 count_repeats<-function(bamlist,namelist,ranges){
   bamfiles<-paste(bamlist, collapse = ' ')
   bamFile <- Rsamtools::BamFile(bamlist[1])
-  if(stringr::str_detect(GenomeInfoDb::seqnames(GenomeInfoDb::seqinfo(bamFile)),"chr")==FALSE){
-    data <-as.character(lapply(GenomeInfoDb::seqlevels(ranges), function(x){gsub("chr", " ", x)}))
+  if(stringr::str_detect(GenomeInfoDb::seqnames(GenomeInfoDb::seqinfo(bamFile)),"PGA_scaffold_")==FALSE){
+    data <-as.character(lapply(GenomeInfoDb::seqlevels(ranges), function(x){gsub("PGA_scaffold_", " ", x)}))
     seqlevels(ranges)<-data
   }
   df<-as.data.frame(ranges)
