@@ -72,10 +72,10 @@ rm_format <- function(filepath){
 count_repeats<-function(bamlist,namelist,ranges){
   bamfiles<-paste(bamlist, collapse = ' ')
   bamFile <- Rsamtools::BamFile(bamlist[1])
-  if(stringr::str_detect(GenomeInfoDb::seqnames(GenomeInfoDb::seqinfo(bamFile)),"PGA_scaffold_")==FALSE){
-    data <-as.character(lapply(GenomeInfoDb::seqlevels(ranges), function(x){gsub("PGA_scaffold_", " ", x)}))
-    seqlevels(ranges)<-data
-  }
+  #if(stringr::str_detect(GenomeInfoDb::seqnames(GenomeInfoDb::seqinfo(bamFile)),"PGA_scaffold_")==FALSE){
+  #  data <-as.character(lapply(GenomeInfoDb::seqlevels(ranges), function(x){gsub("PGA_scaffold_", " ", x)}))
+  #  seqlevels(ranges)<-data
+  #}
   df<-as.data.frame(ranges)
   df<-df[c(1,13,14,6,4,5,2,3,7,10,11,12)] # to reorder columns for bed file format
   df<-as.data.frame(apply(df,2,function(x)gsub('\\s+', '',x))) # for removing whitespaces from fields.
